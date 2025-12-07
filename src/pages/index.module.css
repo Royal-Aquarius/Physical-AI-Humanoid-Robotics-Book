@@ -1,0 +1,75 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 4rem 0;
+  text-align: left; /* Adjust for two-column layout */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: 50vh; /* Ensure enough height for the hero section */
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+    min-height: auto;
+  }
+  .heroContent {
+    order: 2; /* Content below image on small screens */
+  }
+  .heroImageContainer {
+    order: 1; /* Image above content on small screens */
+    margin-bottom: 2rem;
+  }
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.heroImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroImageContainer img {
+  max-height: 400px; /* Limit image height */
+  width: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  justify-content: flex-start; /* Adjust for left-aligned content */
+}
+
+@media screen and (max-width: 996px) {
+  .buttons {
+    justify-content: center; /* Center buttons on small screens */
+  }
+}
+
+.featureSvg {
+  height: 200px;
+  width: 100%;
+  padding: 1.5rem;
+  display: block;
+  margin: 0 auto;
+}
+
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}

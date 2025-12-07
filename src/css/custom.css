@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #3f51b5; /* Indigo 500 */
+  --ifm-color-primary-dark: #303f9f; /* Indigo 700 */
+  --ifm-color-primary-darker: #283593; /* Indigo 800 */
+  --ifm-color-primary-darkest: #1a237e; /* Indigo 900 */
+  --ifm-color-primary-light: #6a73c7; /* Indigo 300 */
+  --ifm-color-primary-lighter: #8c9eff; /* Indigo A100 */
+  --ifm-color-primary-lightest: #e8eaf6; /* Indigo 50 */
+
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Custom Fonts */
+  --ifm-font-family-base: 'Poppins', 'Inter', sans-serif; /* Prioritize Poppins */
+  --ifm-font-family-monospace: 'Fira Code', 'Cascadia Code', monospace;
+
+  /* Custom Colors */
+  --color-text-primary: #212121;
+  --color-text-secondary: #724646;
+  --color-background-alt: #f5f5f5;
+  --color-card-background: #ffffff;
+  --color-card-border: #e0e0e0;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #7986cb; /* Indigo 300 */
+  --ifm-color-primary-dark: #5c6bc0; /* Indigo 400 */
+  --ifm-color-primary-darker: #536dfe; /* Indigo A200 */
+  --ifm-color-primary-darkest: #3f51b5; /* Indigo 500 */
+  --ifm-color-primary-light: #9fa8da; /* Indigo 200 */
+  --ifm-color-primary-lighter: #c5cae9; /* Indigo 100 */
+  --ifm-color-primary-lightest: #e8eaf6; /* Indigo 50 */
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  --color-text-primary: #e0e0e0;
+  --color-text-secondary: #bdbdbd;
+  --color-background-alt: #212121;
+  --color-card-background: #424242;
+  --color-card-border: #939292;
+}
+
+body {
+  font-family: var(--ifm-font-family-base);
+  color: var(--color-text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ifm-font-family-base);
+  color: var(--color-text-primary);
+}
+
+/* Custom Card Styles */
+.card {
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Slightly stronger default shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-card-border);
+  overflow: hidden; /* Ensures rounded corners apply to content */
+  margin-bottom: 1.5rem; /* Add spacing between cards */
+}
+
+.card:hover {
+  transform: translateY(-7px); /* Slightly more pronounced lift */
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18); /* Enhanced shadow on hover */
+}
+
+.card__header {
+  padding: 1.2rem 1.5rem; /* More padding */
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  border-bottom: 1px solid var(--color-card-border);
+}
+
+.card__body {
+  padding: 1rem 1.5rem; /* More padding */
+  color: var(--color-text-secondary);
+  font-size: 0.95rem; /* Slightly smaller text for body */
+}
+
+.card__footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--color-card-border);
+  display: flex; /* To center the button */
+  justify-content: center; /* To center the button */
+}
+
+/* Homepage Hero Section */
+.hero--primary {
+  /* Blue gradient background */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Example blue/indigo gradient */
+  color: #ffffff; /* White text for contrast on dark background */
+  padding: 5rem 0; /* More vertical padding */
+  display: flex;
+  align-items: center;
+  min-height: 70vh; /* Make hero section taller */
+}
+
+[data-theme='dark'] .hero--primary {
+  /* Dark mode hero gradient - adjust as needed for dark theme compatibility */
+  background: linear-gradient(135deg, #1a237e 0%, #000000 100%);
+  color: #ffffff;
+}
+
+.hero__title {
+  font-size: 3.8rem; /* Larger title */
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  color: #ffffff; /* Ensure white color for title */
+}
+
+.hero__subtitle {
+  font-size: 1.5rem; /* Larger subtitle */
+  opacity: 0.95;
+  margin-bottom: 2.5rem;
+  color: #e0e0e0; /* Lighter white for subtitle */
+}
+
+.hero__image {
+  max-width: 90%; /* Slightly smaller image */
+  height: auto;
+  border-radius: 12px; /* Rounded corners for image */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+  display: block; /* Center image */
+  margin: 0 auto; /* Center image */
+}
+
+/* Global Link Styling */
+a {
+  color: var(--ifm-color-primary-lighter); /* Use a lighter primary color for links */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--ifm-color-primary-lightest);
+}
+
+/* Docusaurus button overrides for hero section */
+.button--secondary {
+  background-color: #ffffff;
+  color: #667eea;
+  border-color: #ffffff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.button--secondary:hover {
+  background-color: #e0e0e0;
+  color: #5668c1;
+  border-color: #e0e0e0;
+}
+
+
+/* Layout spacing */
+.container {
+  padding: 3rem 0; /* More vertical padding for overall content */
+}
+
+.row {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+.col {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInFromLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInFromRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.fade-in-section {
+  opacity: 0; /* Hidden by default */
+}
+
+.hero--primary .hero__title { animation: slideInFromLeft 0.8s ease-out forwards; }
+.hero--primary .hero__subtitle { animation: slideInFromLeft 0.8s ease-out 0.2s forwards; }
+.hero--primary .buttons { animation: slideInFromLeft 0.8s ease-out 0.4s forwards; }
+.hero--primary .hero__image { animation: slideInFromRight 0.8s ease-out 0.2s forwards; }
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}

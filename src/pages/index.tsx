@@ -153,7 +153,7 @@ function HomepageContent() {
                 <div className="card__footer">
                   <Link
                     className="button button--outline button--primary button--block"
-                    to="/blog/2019-05-28-first-blog-post">
+                    to="/blog/first-blog-post">
                     Read More
                   </Link>
                 </div>
@@ -173,7 +173,7 @@ function HomepageContent() {
                 <div className="card__footer">
                   <Link
                     className="button button--outline button--primary button--block"
-                    to="/blog/2019-05-29-long-blog-post">
+                    to="/blog/long-blog-post">
                     Read More
                   </Link>
                 </div>
@@ -193,7 +193,7 @@ function HomepageContent() {
                 <div className="card__footer">
                   <Link
                     className="button button--outline button--primary button--block"
-                    to="/blog/2021-08-01-mdx-blog-post">
+                    to="/blog/mdx-blog-post">
                     Read More
                   </Link>
                 </div>

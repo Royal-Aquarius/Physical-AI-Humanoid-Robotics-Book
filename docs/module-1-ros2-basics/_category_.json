@@ -1,4 +1,7 @@
 {
-  "label": "Module 1: ROS2 Basics",
-  "position": 1
+  "label": "Module 1: The Robotic Nervous System (ROS 2)",
+  "position": 2,
+  "link": {
+    "type": "generated-index"
+  }
 }

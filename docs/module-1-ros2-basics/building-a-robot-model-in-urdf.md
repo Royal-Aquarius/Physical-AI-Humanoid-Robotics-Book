@@ -1,19 +1,5 @@
 ---
-sidebar_position: 1
----
-
-# Building a Robot Model in URDF
-
-This chapter details the process of creating a robot's physical description using the Unified Robot Description Format (URDF).
-
-## Subtasks:
-
--   Explain the `<link>` and `<joint>` elements for defining the robot's body and articulations.
--   Document how to add collision and visual properties.
--   Provide an example URDF for a simple robotic arm.
-
----
-sidebar_position: 1
+sidebar_position: 4
 ---
 
 # Building a Robot Model in URDF
@@ -212,4 +198,4 @@ Here's a complete URDF example for a simple two-link robotic arm:
   </joint>
 
 </robot>
-``````
+```

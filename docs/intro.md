@@ -4,44 +4,36 @@ sidebar_position: 1
 
 # Introduction to Physical AI
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Welcome to the comprehensive guide on **Physical AI**, a revolutionary field focusing on embodied intelligence and humanoid robotics. This book delves into the convergence of advanced AI, robotics, and simulation to empower robots that can naturally operate in human environments.
 
-## Getting Started
+## Why Physical AI Matters
 
-Get started by **creating a new site**.
+Physical AI signifies a crucial shift from digital intelligence to embodied intelligence. Humanoid robots, designed to fit seamlessly into human-centric spaces, are at the forefront of this evolution. Understanding and mastering Physical AI is key to unlocking the next generation of autonomous systems capable of complex interactions with the physical world.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## Learning Outcomes
 
-### What you'll need
+Upon completing this book, you will master:
+- **ROS 2**: The robotic nervous system for robust inter-process communication and control.
+- **Simulation**: Creating and interacting with high-fidelity digital twins in Gazebo and Unity.
+- **NVIDIA Isaac**: Developing advanced perception, reinforcement learning, and navigation pipelines with Isaac Sim and Isaac Orbit.
+- **Humanoid Interaction**: Designing and implementing complex bipedal locomotion and manipulation.
+- **Vision-Language-Action (VLA) Systems**: Integrating large language models (LLMs) and voice commands for cognitive planning and intuitive human-robot interaction.
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+## Book Modules Overview
 
-## Generate a new site
+This book is structured into four main modules, culminating in a capstone project:
 
-Generate a new Docusaurus site using the **classic template**.
+### Module 1: The Robotic Nervous System (ROS 2)
+Explore ROS 2 as the foundational middleware for robot control. Learn about ROS 2 nodes, topics, services, actions, Python agents (`rclpy`), and the Unified Robot Description Format (URDF) for humanoid robots.
 
-The classic template will automatically be added to your project after you run the command:
+### Module 2: The Digital Twin (Gazebo & Unity)
+Dive into high-fidelity physics simulation, including gravity and collisions. Learn to simulate complex robotic environments in Gazebo and Unity, implement human-robot interaction, and integrate advanced sensor simulations like LiDAR, depth cameras, and IMUs.
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+### Module 3: The AI-Robot Brain (NVIDIA Isaac)
+Discover the power of NVIDIA Isaac for advanced perception and intelligent decision-making. This module covers Isaac Sim for photorealistic simulation, synthetic data generation, Isaac ROS VSLAM, hardware-accelerated navigation, and Nav2 for bipedal humanoid path planning.
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+### Module 4: Vision-Language-Action (VLA)
+Uncover the convergence of large language models and robotics. Learn about voice-to-action systems using models like Whisper, and how LLMs can facilitate cognitive planning to translate natural language commands (e.g., "clean the room") into complex ROS 2 actions.
 
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+### Capstone Project
+Apply your acquired knowledge to a comprehensive capstone project where a simulated humanoid robot will receive a voice command, plan a path, navigate obstacles, identify an object, and manipulate it, showcasing a fully integrated Physical AI system.

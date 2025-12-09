@@ -160,168 +160,6 @@ if __name__ == "__main__":
         print(f"  Image embedding shape: {img_embed.shape}")
 ```
 
----
-sidebar_position: 2
----
-
-# Implementing a Simple Vision-Language-Action (VLA) Model
-
-This chapter provides a tutorial to build a basic VLA.
-
-## Subtasks:
-
--   Write a guide on using a pre-trained vision model (e.g., CLIP) to interpret an image.
--   Document how to feed this visual information into a small language model (e.g., GPT-2) to generate a text description.
--   Explain how to map the language output to a simple robot action (e.g., "see apple" -> "move arm towards apple").
-
-## Using a Pre-trained Vision Model (CLIP) to Interpret an Image
-
-The first step in building a VLA is to enable the system to understand its visual surroundings. We'll use CLIP (Contrastive Language-Image Pre-training) as our pre-trained vision model. CLIP is excellent for this because it inherently understands the relationship between images and text, allowing it to interpret images based on natural language concepts.
-
-### What is CLIP?
-
-CLIP was trained by OpenAI to efficiently learn visual concepts from natural language supervision. It can determine if a given text description matches an image without explicit training on that specific task. This makes it incredibly powerful for zero-shot image classification and understanding.
-
-### Prerequisites
-
--   Python 3.7+
--   `torch` and `torchvision`
--   `transformers` library (for easy access to CLIP models)
--   `Pillow` for image handling
-
-You can install these with pip:
-```bash
-pip install torch torchvision transformers pillow
-```
-
-### Step-by-Step Guide
-
-1.  **Import Libraries**:
-    ```python
-    import torch
-    from PIL import Image
-    from transformers import CLIPProcessor, CLIPModel
-    ```
-
-2.  **Load Pre-trained CLIP Model and Processor**:
-    The `CLIPProcessor` handles image pre-processing (resizing, normalization) and text tokenization, while `CLIPModel` contains the vision and text encoders.
-    ```python
-    model_name = "openai/clip-vit-base-patch32" # A commonly used CLIP model
-    model = CLIPModel.from_pretrained(model_name)
-    processor = CLIPProcessor.from_pretrained(model_name)
-    ```
-
-3.  **Load and Pre-process an Image**:
-    For this example, let's assume you have an image file (e.g., `apple.jpg`) containing an apple.
-    ```python
-    # Example: Replace 'apple.jpg' with your image file path
-    image_path = "apple.jpg" 
-    image = Image.open(image_path).convert("RGB")
-    ```
-
-4.  **Define Text Descriptions (Candidate Labels)**:
-    These are the concepts CLIP will use to interpret the image.
-    ```python
-    candidate_labels = ["a photo of an apple", "a photo of a banana", "a photo of an orange", "a photo of a robot"]
-    ```
-
-5.  **Encode Image and Text**:
-    Use the processor to prepare the image and text, then pass them through the CLIP model.
-    ```python
-    inputs = processor(text=candidate_labels, images=image, return_tensors="pt", padding=True)
-
-    with torch.no_grad():
-        outputs = model(**inputs)
-    ```
-
-6.  **Calculate Similarity and Interpret**:
-    CLIP provides image and text embeddings. The similarity between these embeddings indicates how well the text describes the image. We'll use the logits (raw similarity scores) to find the best match.
-    ```python
-    logits_per_image = outputs.logits_per_image # this is the image-text similarity score
-    probs = logits_per_image.softmax(dim=1) # convert to probabilities
-
-    # Get the best matching label
-    best_match_index = probs.argmax().item()
-    best_description = candidate_labels[best_match_index]
-    confidence = probs[0, best_match_index].item()
-
-    print(f"Image interpretation: '{best_description}' with confidence {confidence:.2f}")
-
-    # You can also get the raw image embedding for further use in a VLA
-    image_features = outputs.image_embeds
-    print(f"Image embedding shape: {image_features.shape}")
-    ```
-
-#### Full Code Example (`clip_image_interpreter.py`)
-
-```python
-import torch
-from PIL import Image
-from transformers import CLIPProcessor, CLIPModel
-
-def interpret_image_with_clip(image_path, candidate_labels):
-    """
-    Interprets an image using a pre-trained CLIP model.
-
-    Args:
-        image_path (str): Path to the image file.
-        candidate_labels (list): A list of text descriptions to compare against the image.
-
-    Returns:
-        tuple: A tuple containing (best_description, confidence, image_embedding).
-    """
-    model_name = "openai/clip-vit-base-patch32"
-    model = CLIPModel.from_pretrained(model_name)
-    processor = CLIPProcessor.from_pretrained(model_name)
-
-    try:
-        image = Image.open(image_path).convert("RGB")
-    except FileNotFoundError:
-        print(f"Error: Image file not found at {image_path}")
-        return None, 0.0, None
-
-    inputs = processor(text=candidate_labels, images=image, return_tensors="pt", padding=True)
-
-    with torch.no_grad():
-        outputs = model(**inputs)
-
-    logits_per_image = outputs.logits_per_image
-    probs = logits_per_image.softmax(dim=1)
-
-    best_match_index = probs.argmax().item()
-    best_description = candidate_labels[best_match_index]
-    confidence = probs[0, best_match_index].item()
-    image_features = outputs.image_embeds # Keep this for potential further VLA integration
-
-    return best_description, confidence, image_features
-
-if __name__ == "__main__":
-    # --- Create a dummy image for demonstration ---
-    # In a real scenario, you'd have an actual image file.
-    # For this example, let's create a red square and save it as 'red_square.jpg'
-    # You might want to replace this with a real image file if you have one.
-    dummy_image = Image.new('RGB', (200, 200), color = 'red')
-    dummy_image.save("red_square.jpg")
-    print("Created a dummy image 'red_square.jpg' for testing.")
-    # --- End dummy image creation ---
-
-    my_image_path = "red_square.jpg" # Use the dummy image or your own
-    my_candidate_labels = [
-        "a photo of a red object",
-        "a photo of a blue object",
-        "a photo of a green plant",
-        "a photo of a cat"
-    ]
-
-    description, conf, img_embed = interpret_image_with_clip(my_image_path, my_candidate_labels)
-
-    if description:
-        print(f"\nInterpretation Result:")
-        print(f"  Best description: '{description}'")
-        print(f"  Confidence: {conf:.4f}")
-        print(f"  Image embedding shape: {img_embed.shape}")
-```
-
 This guide demonstrates how to use CLIP to interpret an image based on a set of provided text labels. The extracted `image_features` (image embedding) can then be used as input for the language model in the next stage of your VLA.
 
 ## Feeding Visual Information into a Small Language Model (GPT-2) to Generate a Text Description
@@ -475,9 +313,9 @@ def interpret_image_with_clip(image_path, candidate_labels):
     best_match_index = probs.argmax().item()
     best_description = candidate_labels[best_match_index]
     confidence = probs[0, best_match_index].item()
-    image_features = outputs.image_embeds 
+    # image_features = outputs.image_embeds # Not directly used in this simple LM approach
 
-    return best_description, confidence, image_features
+    return best_description, confidence
 
 def generate_text_from_visual_context(clip_interpretation_text, max_length=50):
     """
@@ -525,7 +363,7 @@ if __name__ == "__main__":
         "a photo of a car"
     ]
 
-    best_desc, _, _ = interpret_image_with_clip(my_image_path, my_candidate_labels)
+    best_desc, _ = interpret_image_with_clip(my_image_path, my_candidate_labels)
 
     if best_desc:
         print(f"\nCLIP's best interpretation: '{best_desc}'")

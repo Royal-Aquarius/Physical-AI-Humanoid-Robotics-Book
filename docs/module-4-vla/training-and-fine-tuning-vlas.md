@@ -98,106 +98,6 @@ For deep learning, these actions (`action_sequence`) often need to be vectorized
 -   **Diversity**: Collecting enough diverse data to enable generalization to unseen scenarios, objects, and instructions.
 -   **Long-Horizon Tasks**: Breaking down complex, multi-step tasks into manageable sub-tasks for data collection.
 
----
-sidebar_position: 3
----
-
-# Training and Fine-Tuning Vision-Language-Action Models (VLAs)
-
-This chapter develops content on how to train a VLA on a custom robotics task.
-
-## Subtasks:
-
--   Explain the process of creating a dataset (image, instruction, action).
--   Document how to fine-tune a pre-trained VLA on this dataset.
--   Provide an example of training a VLA to perform a multi-step task in simulation.
-
-## Explaining the Process of Creating a Dataset (Image, Instruction, Action)
-
-Training and fine-tuning Vision-Language-Action (VLA) models for custom robotics tasks requires carefully curated datasets. These datasets fundamentally connect visual observations, natural language instructions, and the corresponding robot actions. The quality and diversity of your dataset directly impact the VLA's ability to generalize and perform effectively in the real world or complex simulations.
-
-### Components of a VLA Dataset Entry
-
-Each entry in a VLA dataset typically consists of a triplet:
-1.  **Image (or Sequence of Images)**: The visual observation(s) from the robot's perspective at a given moment in time. This could be an RGB image, depth image, or a combination.
-2.  **Instruction (or Goal Description)**: A natural language command or description of the task the robot needs to perform, or the desired outcome.
-3.  **Action (or Sequence of Actions)**: The low-level or high-level control commands the robot executed (or should execute) to fulfill the instruction given the visual state.
-
-### Process of Creating a VLA Dataset
-
-Creating such a multimodal dataset is often labor-intensive and can involve several approaches:
-
-#### 1. Human Teleoperation / Demonstrations
-
-This is a common method for generating robot action data paired with visual observations.
-
--   **Procedure**:
-    -   A human operator controls the robot (physically or in simulation) to perform a task.
-    -   During the demonstration, the robot's camera feed(s) are recorded (image stream).
-    -   The operator also provides the corresponding natural language instruction for the task (e.g., "pick up the red block").
-    -   The low-level robot joint states, end-effector poses, or direct control commands are also recorded as the "action" sequence.
--   **Pros**: Provides realistic and diverse action data.
--   **Cons**: Time-consuming, requires expertise, prone to human error, and may not cover all edge cases.
-
-#### 2. Expert Policy (in Simulation)
-
-In simulation, you can define an "expert" policy (either rule-based or another trained RL agent) that can reliably perform tasks.
-
--   **Procedure**:
-    -   Run the expert policy in a simulated environment.
-    -   Record visual observations and the actions taken by the expert.
-    -   Manually (or semi-automatically) associate language instructions with the recorded trajectories.
--   **Pros**: Can generate large amounts of data quickly, perfectly aligned actions, easy to randomize environments.
--   **Cons**: May suffer from the "sim-to-real" gap if not properly managed, still requires associating language.
-
-#### 3. Crowdsourcing and Annotation
-
-For the language component, crowdsourcing platforms can be used to generate diverse descriptions for images or action sequences.
-
--   **Procedure**:
-    -   Show images or videos of robot states/actions to crowd workers.
-    -   Ask them to describe what they see or what instruction would lead to that action.
--   **Pros**: High diversity in language, scalable.
--   **Cons**: Quality control can be challenging, may not capture robot's true capabilities.
-
-#### 4. Synthetic Data Generation
-
-Leveraging simulation (like Isaac Sim) to procedurally generate visual observations, corresponding ground-truth actions, and even randomized instructions.
-
--   **Procedure**:
-    -   Programmatically vary objects, textures, lighting, robot poses, and task goals in a simulator.
-    -   Record synthetic camera images, depth maps, object poses (as actions/labels), and generate corresponding language instructions (e.g., using templates).
--   **Pros**: Massively scalable, perfect ground truth, full control over diversity, directly addresses sim-to-real.
--   **Cons**: Requires careful design to ensure realism and representativeness.
-
-### Data Format and Storage
-
-A common way to store this data is as a list of dictionaries or a similar structured format, where each dictionary contains:
-```json
-{
-  "image_path": "path/to/image_0001.png",
-  "instruction": "pick up the red cube",
-  "action_sequence": [
-    {"joint_name": "joint1", "position": 0.5},
-    {"joint_name": "joint2", "position": -0.2},
-    // ... or end-effector pose, gripper state, etc.
-  ],
-  "metadata": {
-    "task_id": "T1",
-    "demonstration_id": "D1",
-    "environment": "kitchen_scene"
-  }
-}
-```
-For deep learning, these actions (`action_sequence`) often need to be vectorized into tensors. Instructions (`instruction`) are tokenized, and images (`image_path`) are loaded and pre-processed into tensors.
-
-### Challenges in Dataset Creation
-
--   **Action Space Definition**: Determining the appropriate level of abstraction for robot actions (low-level joint commands vs. high-level skills).
--   **Grounding**: Ensuring that the language instructions accurately correspond to the visual context and robot actions.
--   **Diversity**: Collecting enough diverse data to enable generalization to unseen scenarios, objects, and instructions.
--   **Long-Horizon Tasks**: Breaking down complex, multi-step tasks into manageable sub-tasks for data collection.
-
 Creating a robust VLA dataset is a foundational step, enabling the model to learn the intricate relationships required for intelligent robotic behavior.
 
 ## Documenting How to Fine-Tune a Pre-Trained VLA on This Dataset
@@ -394,14 +294,6 @@ if __name__ == "__main__":
 -   **Domain Randomization**: Especially important for sim-to-real transfer. Randomize aspects of the simulation (textures, lighting, object poses, robot parameters) during data collection or training to make the VLA robust to real-world variations.
 -   **Hyperparameter Tuning**: Experiment with learning rates, batch sizes, and optimization strategies to find the best configuration for your specific task.
 
-### Key Considerations for Fine-Tuning
-
--   **Pre-training Architecture**: Understand the pre-training objectives of the base VLA model. Some models might be better suited for certain types of tasks (e.g., visual question answering vs. direct control).
--   **Action Space Alignment**: Ensure that the output of your VLA's action decoder matches your robot's control input (e.g., joint position targets, velocity commands, force commands).
--   **Reward Shaping (for RL fine-tuning)**: If using Reinforcement Learning for fine-tuning, carefully design the reward function to guide the agent toward desired behaviors.
--   **Domain Randomization**: Especially important for sim-to-real transfer. Randomize aspects of the simulation (textures, lighting, object poses, robot parameters) during data collection or training to make the VLA robust to real-world variations.
--   **Hyperparameter Tuning**: Experiment with learning rates, batch sizes, and optimization strategies to find the best configuration for your specific task.
-
 By fine-tuning a pre-trained VLA, you can harness the power of large-scale pre-training to quickly develop capable and robust robotic policies for custom tasks.
 
 ## Example of Training a VLA to Perform a Multi-Step Task in Simulation
@@ -448,7 +340,7 @@ For multi-step tasks, a common approach is to combine:
         -   Discrete: High-level actions like "grasp," "release."
 
 3.  **Reward Function Design**:
-    A shaped reward function is crucial for multi-step tasks. Rewards should be given for:
+A shaped reward function is crucial for multi-step tasks. Rewards should be given for:
     -   **Proximity to object**: Penalize distance between end-effector and target object.
     -   **Successful grasp**: Large positive reward when the object is securely grasped.
     -   **Lifting object**: Positive reward for lifting the object above the table.
@@ -457,7 +349,7 @@ For multi-step tasks, a common approach is to combine:
     -   **Penalties**: For dropping the object, collisions, or excessive control effort.
 
 4.  **Language Conditioning**:
-    The VLA receives instructions like "Pick up the red block and put it in the blue bin." The language model component helps to ground the visual observations to the specific objects ("red block") and goals ("blue bin").
+The VLA receives instructions like "Pick up the red block and put it in the blue bin." The language model component helps to ground the visual observations to the specific objects ("red block") and goals ("blue bin").
 
 5.  **Training with an RL Algorithm (e.g., PPO or SAC)**:
     -   **Parallel Environments**: Leverage Isaac Sim's ability to run thousands of parallel environments for efficient data collection.

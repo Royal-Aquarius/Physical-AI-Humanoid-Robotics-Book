@@ -411,4 +411,17 @@ world.clear_instance()
 4.  **Alternative (External Script)**: If you're running the script externally, ensure your Python environment is configured with the Isaac Sim Python API (usually by sourcing `setup_python_env.sh` or `setup_python_env.bat` from your Isaac Sim installation directory). Then execute the script using `python hello_isaac.py`.
 
 This "Hello, World!" example provides a basic foundation for interacting with Isaac Sim programmatically. From here, you can explore more complex scene compositions, robot integrations, and simulation functionalities using the extensive Isaac Sim Python API.
+```
+
+### How to Run the Script
+
+1.  **Open Isaac Sim**: Launch Isaac Sim through the Omniverse Launcher.
+2.  **Open Script Editor**: Go to `Window -> Script Editor`.
+3.  **Load and Run**:
+    -   Copy and paste the Python code into the Script Editor.
+    -   Click the "Run" button (green play icon).
+    -   You should see a blue cube appear in the viewport, and after a few moments, it will be pushed by an applied force.
+4.  **Alternative (External Script)**: If you're running the script externally, ensure your Python environment is configured with the Isaac Sim Python API (usually by sourcing `setup_python_env.sh` or `setup_python_env.bat` from your Isaac Sim installation directory). Then execute the script using `python hello_isaac.py`.
+
+This "Hello, World!" example provides a basic foundation for interacting with Isaac Sim programmatically. From here, you can explore more complex scene compositions, robot integrations, and simulation functionalities using the extensive Isaac Sim Python API.
 

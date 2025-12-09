@@ -5,25 +5,20 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Physical AI & Humanoid Robotics',
-  tagline: 'Empowering the next generation of robotics engineers',
+  title: 'Physical AI Book',
+  tagline: 'Your ultimate guide to building intelligent humanoid systems',
   favicon: 'img/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
-  future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
-  },
-
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://physical-ai-book.vercel.app',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'Royal-Aquarius', // Usually your GitHub org/user name.
+  projectName: 'physical-ai-book-docusaurus', // Usually your repo name.
 
   onBrokenLinks: 'throw',
 
@@ -44,7 +39,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/Royal-Aquarius/physical-ai-book-docusaurus/tree/main/',
         },
         blog: {
           showReadingTime: true,
@@ -55,7 +50,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/Royal-Aquarius/physical-ai-book-docusaurus/tree/main/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -63,6 +58,12 @@ const config: Config = {
         },
         theme: {
           customCss: './src/css/custom.css',
+        },
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+          ignorePatterns: ['/tags/**'],
+          filename: 'sitemap.xml',
         },
       } satisfies Preset.Options,
     ],
@@ -85,9 +86,9 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Book',
+          label: 'Physical AI Book',
         },
-        // {to: '/blog', label: 'Insights', position: 'left'},
+        {to: '/blog', label: 'Insights', position: 'left'},
         {
           href: 'https://github.com/Royal-Aquarius',
           label: 'GitHub',
@@ -102,7 +103,7 @@ const config: Config = {
           title: 'Book',
           items: [
             {
-              label: 'AI-Book',
+              label: 'Physical AI Book',
               to: '/docs/intro',
             },
           ],
@@ -138,7 +139,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Minhaj Ahmed, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics, Inc. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

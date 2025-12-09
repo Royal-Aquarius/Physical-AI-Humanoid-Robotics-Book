@@ -33,7 +33,7 @@ const FeatureList: FeatureItem[] = [
         Learn to build and simulate digital twins of robots, enabling realistic testing and advanced control strategies.
       </>
     ),
-    link: '/docs/module-2-digital-twin/building-a-robot-model-in-urdf',
+    link: '/docs/module-1-ros2-basics/building-a-robot-model-in-urdf',
   },
   {
     title: 'NVIDIA Isaac Sim: Advanced Robotics Simulation',

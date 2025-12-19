@@ -1,0 +1,134 @@
+/* src/theme/Footer/styles.module.css */
+
+.footer {
+  background: radial-gradient(circle at top, #353535, #000000);
+  padding: 4rem 2rem 2rem;
+  border-top: 1px solid var(--color-border);
+  position: relative;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05); /* Subtle shadow for lift */
+  backdrop-filter: blur(8px); /* Glassmorphism effect */
+}
+
+.footerContent {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.footerSection {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footerTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footerText {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.footerText a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footerText a:hover {
+  color: var(--ifm-color-primary);
+}
+
+
+/* Social Icons */
+.socialIcons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.socialIcon {
+  color: var(--color-text-secondary);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.socialIcon:hover {
+  transform: translateY(-4px);
+  color: var(--ifm-color-primary);
+}
+
+
+/* Newsletter Form */
+.newsletterForm {
+  display: flex;
+  margin-top: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--ifm-global-shadow-lw);
+}
+
+.newsletterInput {
+  flex-grow: 1;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  border-right: none;
+}
+.newsletterInput:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+}
+
+.newsletterButton {
+  border: none;
+  background: #cccccc;
+  color: white;
+  html[data-theme='dark'] & {
+    color: var(--color-background);
+  }
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.newsletterButton:hover {
+    background-color: #ffffff;
+}
+
+
+/* Copyright */
+.footerCopyright {
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footerContent {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .socialIcons {
+    justify-content: center;
+  }
+  .newsletterForm {
+    width: 100%;
+    max-width: 400px;
+  }
+}

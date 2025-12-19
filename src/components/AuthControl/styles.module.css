@@ -1,0 +1,20 @@
+.authContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logoutButton {
+  background-color: #cfcfcf;
+  color: black;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.logoutButton:hover {
+  background-color: white;
+}

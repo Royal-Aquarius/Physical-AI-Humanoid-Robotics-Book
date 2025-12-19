@@ -4,7 +4,9 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
+  /* padding: 4rem 0; */
+  padding-top: 6rem;    /* Top padding */
+  padding-bottom: 2rem; /* Bottom padding (adjust as needed) */
   text-align: left; /* Adjust for two-column layout */
   position: relative;
   overflow: hidden;
@@ -49,7 +51,7 @@
 .buttons {
   display: flex;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: -1.3rem;
   justify-content: flex-start; /* Adjust for left-aligned content */
 }
 

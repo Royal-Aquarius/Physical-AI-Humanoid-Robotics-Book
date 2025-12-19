@@ -1,0 +1,18 @@
+{
+  "item.label.Physical AI Book": {
+    "message": "كتاب الذكاء الاصطناعي المادي",
+    "description": "Navbar item with label Physical AI Book"
+  },
+  "item.label.Concept Overview": {
+    "message": "نظرة عامة على المفاهيم",
+    "description": "Navbar item with label Concept Overview"
+  },
+  "item.label.GitHub": {
+    "message": "جيثب",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.label.Chatbot": {
+    "message": "روبوت الدردشة",
+    "description": "Navbar item with label Chatbot"
+  }
+}

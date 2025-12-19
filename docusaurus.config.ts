@@ -14,20 +14,43 @@ const config: Config = {
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
+  trailingSlash: false,
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'Royal-Aquarius', // Usually your GitHub org/user name.
   projectName: 'physical-ai-book-docusaurus', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
+
+  // Add custom scripts here
+  scripts: [
+    '/js/scroll-reveal.js', // This path is relative to the `static` directory
+  ],
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'ur', 'ar'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+        direction: 'ltr',
+        htmlLang: 'en-US',
+      },
+      ur: {
+        label: 'اردو',
+        direction: 'rtl',
+        htmlLang: 'ur-PK',
+      },
+      ar: {
+        label: 'العربية',
+        direction: 'rtl',
+        htmlLang: 'ar-SA',
+      },
+    },
   },
 
   presets: [
@@ -40,21 +63,6 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/Royal-Aquarius/physical-ai-book-docusaurus/tree/main/',
-        },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/Royal-Aquarius/physical-ai-book-docusaurus/tree/main/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -88,57 +96,29 @@ const config: Config = {
           position: 'left',
           label: 'Physical AI Book',
         },
-        {to: '/blog', label: 'Insights', position: 'left'},
+        {to: '/concept-overview', label: 'Concept Overview', position: 'left'},
         {
           href: 'https://github.com/Royal-Aquarius',
           label: 'GitHub',
           position: 'right',
         },
+        // {
+        //   to: '/chatbot',
+        //   label: 'Chatbot',
+        //   position: 'right',
+        //   className: 'button button--secondary navbar-button',
+        // },
+        {
+          type: 'localeDropdown',
+          position: 'right',
+        },
+        {
+          type: 'custom-AuthControl',
+          position: 'right',
+        },
       ],
     },
     footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Book',
-          items: [
-            {
-              label: 'Physical AI Book',
-              to: '/docs/intro',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/RoyalAquarius10',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Insights',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/Royal-Aquarius',
-            },
-          ],
-        },
-      ],
       copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics, Inc. Built with Docusaurus.`,
     },
     prism: {

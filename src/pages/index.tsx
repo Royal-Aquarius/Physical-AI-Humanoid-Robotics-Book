@@ -1,12 +1,16 @@
-import type {ReactNode} from 'react';
+import {useState, useEffect, type ReactNode} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
+import WhyThisBook from '@site/src/components/WhyThisBook';
+import EndGoal from '@site/src/components/EndGoal';
+import Prerequisites from '@site/src/components/Prerequisites';
+import { motion, useScroll, useTransform } from 'framer-motion'; // Import Framer Motion hooks
 import styles from './index.module.css';
 
-const HERO_IMAGE = 'https://img.freepik.com/premium-photo/futuristic-robot-with-blue-glowing-network-it_14117-876267.jpg'; // Placeholder for high-quality AI/robotics image for the hero section
+const HERO_IMAGE = 'https://humanoidroboticstechnology.com/wp-content/uploads/2025/09/apptronik-wins-awards-2025.png'; // Placeholder for high-quality AI/robotics image for the hero section
 type FeatureItem = {
   title: string;
   image: string;
@@ -14,10 +18,16 @@ type FeatureItem = {
   link: string;
 };
 
+// Framer Motion Variants for entrance animation
+const fadeInUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { opacity: 1, y: 0 },
+};
+
 const FeatureList: FeatureItem[] = [
   {
     title: 'ROS2 Basics: Foundation for Robotics',
-    image: 'https://img.freepik.com/premium-photo/futuristic-robot-artificial-intelligence-huminoid-ai-programming-coding_31965-66352.jpg', // Module-specific AI/robotics image
+    image: 'https://cdn.shopify.com/s/files/1/0695/5096/4982/files/ROSOrin_3cf37bba-b006-49a7-b366-022ab5ae7471.jpg?v=1712112368', // Module-specific AI/robotics image
     description: (
       <>
         Grasp the core concepts of ROS2, set up your development environment, and master inter-node communication.
@@ -27,7 +37,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Digital Twin: Bridging Virtual & Real Robotics',
-    image: 'https://img.freepik.com/premium-photo/blue-robotic-assistant-artificial-intelligence-robot-witth-graphic-display_493806-15783.jpg', // Module-specific AI/robotics image
+    image: 'https://www.theengineer.co.uk/media/whie02ol/working-robot.png?width=1002&height=564&v=1dab59ea032e080', // Module-specific AI/robotics image
     description: (
       <>
         Learn to build and simulate digital twins of robots, enabling realistic testing and advanced control strategies.
@@ -37,7 +47,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'NVIDIA Isaac Sim: Advanced Robotics Simulation',
-    image: 'https://developer-blogs.nvidia.com/wp-content/uploads/2025/06/vention-featured-660x370-jpg.webp', // Module-specific AI/robotics image
+    image: 'https://docs.isaacsim.omniverse.nvidia.com/5.0.0/_images/isim_4.5_full_ref_viewport_Isaac_Robots_AgilexRobotics_limo_limo.usd.png', // Module-specific AI/robotics image
     description: (
       <>
         Dive into high-fidelity robotics simulation with NVIDIA Isaac Sim, exploring reinforcement learning and advanced scenarios.
@@ -47,7 +57,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Vision-Language Models: Robotic Perception & Interaction',
-    image: 'https://news.mit.edu/sites/default/files/images/202511/MIT-SelfAdapt-LLM-01-press.jpg', // Module-specific AI/robotics image
+    image: 'https://miro.medium.com/1*wbAWOTe1sfWSahQb5XyTow.png', // Module-specific AI/robotics image
     description: (
       <>
         Explore the integration of vision and language for intelligent robotic perception, reasoning, and interaction.
@@ -57,7 +67,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Capstone Project: Autonomous Humanoid Behavior',
-    image: 'https://www.rudebaguette.com/wp-content/uploads/2025/07/its-alive-and-running-at-9-mph-this-blazing-fast-chinese-l7-humanoid-shatters-records-as-the-worlds-quickest-bipedal-robot.jpg.webp', // Module-specific AI/robotics image
+    image: 'https://www.mckinsey.com/~/media/mckinsey/industries/advanced%20electronics/our%20insights/humanoid%20robots%20crossing%20the%20chasm%20from%20concept%20to%20commercial%20reality/thumb-gettyimages-2233368723.jpg?mw=677&car=42:25', // Module-specific AI/robotics image
     description: (
       <>
         Apply your knowledge to a comprehensive capstone project, developing autonomous behaviors for humanoid robots.
@@ -65,12 +75,30 @@ const FeatureList: FeatureItem[] = [
     ),
     link: '/docs/capstone-project/project-scoping-and-design',
   },
+  {
+    title: 'Ethical AI & Robotics: Governance, Safety & Responsibility',
+    image: 'https://i0.wp.com/andrewggibson.com/wp-content/uploads/2023/09/stable-diffusion-xl_clipdrop-cleanup-84-jpg.webp?resize=720%2C405&ssl=1',
+    description: (
+      <>
+        Examine the ethical considerations and societal impact of advanced AI and humanoid robotics.
+      </>
+    ),
+    link: '/docs/intro',
+  },
 ];
 
 function Feature({title, image, description, link}: FeatureItem) {
   return (
     <div className={clsx('col col--4 margin-bottom--lg')}>
-      <div className="card">
+      <motion.div 
+        className="card"
+        whileHover={{ 
+          scale: 1.03, 
+          boxShadow: "0 15px 30px rgba(0, 0, 0, 0.2)",
+          rotate: 1 // Subtle rotation
+        }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      >
         {image && (
           <div className="card__image">
             <img src={image} alt={title} className="card-img-top" style={{width: '100%', height: '200px', objectFit: 'cover', borderRadius: '12px 12px 0 0'}} />
@@ -89,38 +117,50 @@ function Feature({title, image, description, link}: FeatureItem) {
             Explore
           </Link>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
 
 function HomepageHero() {
   const {siteConfig} = useDocusaurusContext();
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    <motion.header
+      className={clsx('hero hero--primary', styles.heroBanner, 'animated-background-overlay')}
+      initial="hidden"
+      animate="visible"
+      variants={{ visible: { transition: { staggerChildren: 0.2 } } }} // Stagger children animations
+    >
       <div className="container">
         <div className="row row--align-center"> {/* Align items in the center vertically */}
           <div className={clsx('col col--6', styles.heroContent)}>
-            <Heading as="h1" className="hero__title">
-              {siteConfig.title}
-            </Heading>
-            <p className="hero__subtitle">
-              Master the convergence of AI and robotics: empowering engineers to design, simulate, and deploy intelligent humanoid systems for a futuristic world.
-            </p>
-            <div className={styles.buttons}>
+            <motion.div variants={fadeInUp} transition={{ duration: 0.8 }}>
+              <Heading as="h1" className="hero__title">
+                {siteConfig.title}
+              </Heading>
+            </motion.div>
+            <motion.div variants={fadeInUp} transition={{ duration: 0.8, delay: 0.2 }}>
+              <p className="hero__subtitle">
+                Master the convergence of AI and robotics, empowering engineers to design, and deploy intelligent humanoid systems that drive innovation, and redefine the future of intelligent machines in a smarter, future-ready world.
+              </p>
+            </motion.div>
+            <motion.div variants={fadeInUp} transition={{ duration: 0.8, delay: 0.4 }} className={styles.buttons}>
               <Link
                 className="button button--secondary button--lg"
                 to="/docs/intro">
                 Start Your Journey
               </Link>
-            </div>
+            </motion.div>
           </div>
-          <div className={clsx('col col--6', styles.heroImageContainer)}>
+          <motion.div style={{ y }} variants={fadeInUp} transition={{ duration: 0.8, delay: 0.6 }} className={clsx('col col--6', styles.heroImageContainer)}>
             <img src={HERO_IMAGE} alt="Physical AI & Humanoid Robotics" className="hero__image" />
-          </div>
+          </motion.div>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }
 
@@ -128,78 +168,11 @@ function HomepageContent() {
   return (
     <section className={clsx(styles.features)}>
       <div className="container">
-        <Heading as="h2" className="text--center margin-bottom--xl">Explore Our Learning Modules</Heading>
+        <Heading as="h2" className="text--center margin-bottom--lg">Explore Our Learning Modules</Heading>
         <div className="row">
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />
           ))}
-        </div>
-        {/* Placeholder for an additional section for "Insights" or "Related Content" */}
-        <div className="margin-top--xl">
-          <Heading as="h2" className="text--center margin-bottom--xl">Latest Insights</Heading>
-          <div className="row">
-            {/* These would typically come from blog posts or specific content */}
-            <div className={clsx('col col--4 margin-bottom--lg')}>
-              <div className="card">
-                <div className="card__image">
-                  <img src="https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2024/05/1200/675/1-China-unveils-their-first-full-size-electric-running-humanoid-robot.jpg?ve=1&tl=1" alt="Insight 1" style={{width: '100%', height: '200px', objectFit: 'cover', borderRadius: '12px 12px 0 0'}} />
-                </div>
-                <div className="card__header">
-                  <Heading as="h3">The Future of Humanoid Robotics In World</Heading>
-                </div>
-                <div className="card__body">
-                  <p>Exploring the advancements and challenges in creating intelligent humanoid robots.</p>
-                </div>
-                <div className="card__footer">
-                  <Link
-                    className="button button--outline button--primary button--block"
-                    to="/blog/first-blog-post">
-                    Read More
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className={clsx('col col--4 margin-bottom--lg')}>
-              <div className="card">
-                <div className="card__image">
-                  <img src="https://d12aarmt01l54a.cloudfront.net/cms/images/UserMedia-20210322084240/808-440.png" alt="Insight 2" style={{width: '100%', height: '200px', objectFit: 'cover', borderRadius: '12px 12px 0 0'}} />
-                </div>
-                <div className="card__header">
-                  <Heading as="h3">AI in Physical Systems: A New Paradigm</Heading>
-                </div>
-                <div className="card__body">
-                  <p>How artificial intelligence is transforming the design and operation of physical systems.</p>
-                </div>
-                <div className="card__footer">
-                  <Link
-                    className="button button--outline button--primary button--block"
-                    to="/blog/long-blog-post">
-                    Read More
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className={clsx('col col--4 margin-bottom--lg')}>
-              <div className="card">
-                <div className="card__image">
-                  <img src="https://hitechnectar.com/wp-content/uploads/2024/11/Ethical-AI-1-990x600.jpg" alt="Insight 3" style={{width: '100%', height: '200px', objectFit: 'cover', borderRadius: '12px 12px 0 0'}} />
-                </div>
-                <div className="card__header">
-                  <Heading as="h3">Ethical Considerations in Advanced AI</Heading>
-                </div>
-                <div className="card__body">
-                  <p>Discussing the moral and societal implications of rapidly evolving AI technologies.</p>
-                </div>
-                <div className="card__footer">
-                  <Link
-                    className="button button--outline button--primary button--block"
-                    to="/blog/mdx-blog-post">
-                    Read More
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -210,11 +183,14 @@ export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Physical AI & Humanoid Robotics`}
-      description="Learn about Physical AI and Humanoid Robotics with our comprehensive modules and tutorials.">
+      title="Physical AI & Humanoid Robotics"
+      description={siteConfig.tagline}>
       <HomepageHero />
       <main>
         <HomepageContent />
+        <WhyThisBook />
+        <EndGoal />
+        <Prerequisites />
       </main>
     </Layout>
   );

@@ -1,0 +1,34 @@
+.backToTopButton {
+  position: fixed;
+  bottom: 26px;
+  right: 100px; /* Positioned to the left of the chatbot button */
+  background-color: var(--color-mid-gray);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-light-gray);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: var(--ifm-global-shadow-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  z-index: 999;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+.backToTopButton.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.backToTopButton:hover {
+  background-color: rgb(130, 130, 130);
+  color: var(--color-black);
+  transform: scale(1.1);
+}

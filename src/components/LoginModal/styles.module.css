@@ -1,0 +1,126 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(5px);
+}
+
+.modalContent {
+  background: var(--ifm-background-surface-color);
+  padding: 2.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+}
+
+.form {
+  margin-top: 1.5rem;
+}
+
+.passwordWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.inputField {
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+  display: block;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  font-size: 1rem;
+}
+
+.passwordWrapper .inputField {
+    padding-right: 3rem; /* Make space for the icon */
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #b0b0b0;
+  box-shadow: 0 0 0 1px #cbcbcb;
+}
+
+.showHideButton {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--ifm-color-emphasis-600);
+}
+
+.submitButton {
+  width: 100%;
+  background-color: #d4d2d2;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  transition: background-color 0.2s;
+}
+
+.submitButton:hover {
+  background-color: #ffffff;
+}
+
+.toggleButton {
+  background: none;
+  border: none;
+  color: var(--ifm-color-primary);
+  cursor: pointer;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.errorMessage, .successMessage {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  padding: 0.75rem;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.errorMessage {
+  color: var(--ifm-color-danger-dark);
+  background-color: var(--ifm-color-danger-lightest);
+}
+
+.successMessage {
+    color: var(--ifm-color-success-dark);
+    background-color: var(--ifm-color-success-lightest);
+}
+
+.rememberMe {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.rememberMe input {
+  margin-right: 0.5rem;
+}

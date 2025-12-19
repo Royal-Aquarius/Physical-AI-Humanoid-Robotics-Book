@@ -1,0 +1,18 @@
+{
+  "item.label.Physical AI Book": {
+    "message": "فزیکل اے آئ کتاب",
+    "description": "Navbar item with label Physical AI Book"
+  },
+  "item.label.Concept Overview": {
+    "message": "تصوراتی جائزہ",
+    "description": "Navbar item with label Concept Overview"
+  },
+  "item.label.GitHub": {
+    "message": "گٹ ہب",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.label.Chatbot": {
+    "message": "چیٹ بوٹ",
+    "description": "Navbar item with label Chatbot"
+  }
+}

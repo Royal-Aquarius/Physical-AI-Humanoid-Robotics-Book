@@ -10,7 +10,6 @@ import styles from './concept-overview.module.css'; // Dedicated CSS module
 type ConceptBlockItem = {
   title: string;
   description: ReactNode;
-  image: string; // Using image for visual engagement
   link: string;
 };
 
@@ -20,10 +19,9 @@ const ConceptBlocks: ConceptBlockItem[] = [
     title: 'Introduction to Physical AI',
     description: (
       <>
-        Explore the foundational principles of Physical AI, understanding how it bridges the gap between digital intelligence and physical interaction.
+        Explore the foundational principles of Physical AI, understanding how it connects digital intelligence with physical interaction to create intelligent, interactive robotic systems.
       </>
     ),
-    image: '/img/concept-icon-1.svg',
     link: '/docs/intro',
   },
   {
@@ -33,47 +31,42 @@ const ConceptBlocks: ConceptBlockItem[] = [
         Dive into ROS 2, the core framework for robotic development, enabling communication and control in complex systems.
       </>
     ),
-    image: '/img/concept-icon-2.svg',
     link: '/docs/module-1-ros2-basics/introduction-to-ros2',
   },
   {
-    title: 'Humanoid-Robot', // Placeholder content, as no explicit content file found
+    title: 'Humanoid-Robot Technology', // Placeholder content, as no explicit content file found
     description: (
       <>
-        Understand the unique challenges and advancements in designing and controlling humanoid robots, the frontier of physical AI.
+        Understand the unique challenges, breakthroughs, and innovations in designing, controlling, and deploying humanoid robots, at the forefront of Physical AI.
       </>
     ),
-    image: '/img/concept-icon-3.svg',
     link: '/docs/intro', // Link to intro as a general starting point
   },
   {
     title: 'Module 2: The Digital Twin (Gazebo & Unity)',
     description: (
       <>
-        Learn to create and utilize digital twins for advanced simulation, testing, and optimization of robotic systems.
+        Learn to create and leverage digital twins for advanced simulation and optimization, enabling more efficient development of robotic systems.
       </>
     ),
-    image: '/img/concept-icon-4.svg',
     link: '/docs/module-2-digital-twin/simulating-the-robot-in-gazebo',
   },
   {
-    title: 'NVIDIA Isaac',
+    title: 'NVIDIA Isaac AI Robotics',
     description: (
       <>
-        Discover NVIDIA Isaac Sim, a powerful platform for high-fidelity robotics simulation, essential for AI-driven development.
+        Explore NVIDIA Isaac Sim, a cutting-edge platform for realistic robotics simulation, offering tools to design and deploy AI-driven robots in both real-world environments.
       </>
     ),
-    image: '/img/concept-icon-5.svg',
     link: '/docs/module-3-nvidia-isaac/setting-up-nvidia-isaac-sim',
   },
   {
     title: 'Module 3: The AI-Robot Brain (NVIDIA Isaac)',
     description: (
       <>
-        Explore how NVIDIA Isaac empowers the development of intelligent robot brains through advanced AI and simulation.
+        Discover how NVIDIA Isaac develops intelligent robot brains using advanced AI, realistic simulation, and practical robotics tools.
       </>
     ),
-    image: '/img/concept-icon-6.svg',
     link: '/docs/module-3-nvidia-isaac/developing-with-isaac-gym-reinforcement-learning',
   },
   {
@@ -83,17 +76,15 @@ const ConceptBlocks: ConceptBlockItem[] = [
         Unpack VLAs, integrating visual perception, natural language understanding, and physical action for advanced robot capabilities.
       </>
     ),
-    image: '/img/concept-icon-7.svg',
     link: '/docs/module-4-vla/introduction-to-vlas',
   },
   {
-    title: 'Capstone Project',
+    title: 'Capstone Project Experience',
     description: (
       <>
-        Apply all your knowledge in a comprehensive capstone project, bringing intelligent humanoid systems to life.
+        Apply everything you've learned in a comprehensive capstone project to create fully functional intelligent humanoid systems that move, interact, and perform real-world tasks.
       </>
     ),
-    image: '/img/concept-icon-8.svg',
     link: '/docs/capstone-project/project-scoping-and-design',
   },
 ];
@@ -121,9 +112,6 @@ const ConceptBlock: React.FC<{ item: ConceptBlockItem; delay: number }> = ({ ite
       whileHover={{ scale: 1.03 }}
       transition={{ type: 'spring', stiffness: 300, damping: 10 }}
     >
-      <div className={styles.conceptBlockIcon}>
-        <img src={item.image} alt={item.title} className={styles.conceptBlockImage} />
-      </div>
       <Heading as="h3" className={styles.conceptBlockTitle}>{item.title}</Heading>
       <p className={styles.conceptBlockDescription}>{item.description}</p>
       <Link className={clsx('button button--outline button--primary', styles.conceptBlockLink)} to={item.link}>

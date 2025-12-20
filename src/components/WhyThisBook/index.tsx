@@ -30,7 +30,7 @@ const ReasonList: ReasonItem[] = [
     title: 'Progressive Complexity',
     description: (
       <>
-        Start simple, build complexity. Each lesson builds on the last with clear prerequisites.
+        Start simple, build complexity. Each lesson progressively builds on the last with clear prerequisites.
       </>
     ),
   },
@@ -89,7 +89,7 @@ export default function WhyThisBook(): JSX.Element {
       <div className="container">
         <div className="text--center margin-bottom--lg">
             <Heading as="h2">Why This Book</Heading>
-            <p className={styles.subheading}>Built for Real-World Robotics  Not another theory-heavy textbook. This is a hands-on guide to building robots that work.</p>
+            <p className={styles.subheading}>Beyond Theory a hands-on guide to building robots that truly work in the real world</p>
         </div>
         <div className="row">
           {ReasonList.map((props, idx) => (

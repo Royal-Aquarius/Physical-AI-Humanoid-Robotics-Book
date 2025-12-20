@@ -28,7 +28,8 @@ html[data-theme='dark'] .conceptOverviewHero {
 }
 
 .conceptOverviewMain {
-  padding: 4rem 0;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
   background-color: var(--ifm-background-color); /* Use a consistent background */
 }
 
@@ -55,17 +56,6 @@ html[data-theme='dark'] .conceptOverviewHero {
   transform: translateY(-5px);
   border-color: var(--ifm-color-primary);
   box-shadow: var(--ifm-global-shadow-lg);
-}
-
-.conceptBlockImage {
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.conceptBlockImage img {
-  width: 48px; /* Consistent size for images */
-  height: 48px;
-  object-fit: contain; /* Ensure the image scales correctly */
 }
 
 .conceptBlockTitle {

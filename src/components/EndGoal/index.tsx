@@ -65,7 +65,7 @@ export default function EndGoal(): JSX.Element {
       <div className="container">
         <div className="text--center margin-bottom--lg">
             <Heading as="h2">The End Goal</Heading>
-            <p className={styles.subheading}>Voice to Action Pipeline  By the end of this book, you'll build a complete system that turns natural language into robot actions.</p>
+            <p className={styles.subheading}>Build a full voice-to-action pipeline that lets robots follow natural language commands</p>
         </div>
         <div className="row">
           {FeatureList.map((props, idx) => (
